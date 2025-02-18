@@ -6,8 +6,17 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:30:29 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/18 10:30:32 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:40:39 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
 
+int	main(int ac, char **av)
+{
+	if (ac == 3)
+	{
+		kill(atoi(av[1]), atoi(av[2]));
+	}
+	return (0);
+}

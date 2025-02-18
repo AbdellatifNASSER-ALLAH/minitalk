@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:30:08 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/18 12:28:30 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:41:02 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 #define	HEADER_H
 
 #include <unistd.h>
+#include <signal.h>
+
+#include <stdio.h>
+#include <stdlib.h>
 
 #endif
