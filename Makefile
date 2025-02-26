@@ -2,6 +2,9 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
+SRC = utils.c
+OBJ =$(SRC:.c=.o) 
+
 SRCS = server.c
 OBJS =$(SRCS:.c=.o) 
 
@@ -13,21 +16,24 @@ CLIENT = client
 
 all: $(SERVER) $(CLIENT)
 	
-$(SERVER): $(OBJS)
+$(SERVER): $(OBJS) $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(CLIENT): $(OBJC)
+$(CLIENT): $(OBJC) $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 		
 clean:
-	rm -f $(OBJS) $(OBJC)
+	rm -f $(OBJS) $(OBJC) $(OBJ)
 
 fclean: clean
 	rm -f $(SERVER) $(CLIENT)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+e:
+	vi Makefile
+
+.PHONY: all clean fclean re e
