@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:29:24 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/26 19:04:54 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:10:09 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 void	handler(int sig)
 {
-	int	bit;
-	char c;
+	static int	bit;
+	static char c;
 
-	bit = 7;
-	while(bit--)
+	c <<= 1;
+	c |= (sig == I);
+	bit++;
+	if( bit == 8)
 	{
-		if(sig == I)
-			c &= 1;
+		if (c == '\0')
+			write(1, "\n", 1);
 		else
-			c <<= 1;
-		c <<= 1;
+			write(1, &c, 1);
+		bit = 0;
+		c = 0;
 	}
-	write(1, &c, 1);
 }
 int	main()
 {	
 	signal(I, handler);
 	signal(O, handler);
-	printf("test: %d\n", getpid());
-	while(1){}
+	printf("PID: %d\n", getpid());
+	while(1)
+		pause();
 }

@@ -6,32 +6,34 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 23:21:06 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/26 18:47:10 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:20:53 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
 
-int	send_msg(pid_t	pid, char *msg)
+static	void send_char(pid_t pid, char c)
 {
 	int	bit;
-	char	c;
 
+	bit = 8;
+	while (bit--)
+	{
+		if (c & 0x80)
+			kill(pid, I);
+		else
+			kill(pid, O);
+		c <<= 1;
+		usleep(50);
+	}
+}
+
+int	send_msg(pid_t	pid, char *msg)
+{
 	if (kill(pid, 0) == -1)
 		return (write(2, "Process Not found!\n", 19), 0);
-	while(msg && *msg)
-	{
-		bit = 7;
-		c = *msg;
-		while (bit--)
-		{
-			if (c & 0x80)
-				kill(pid, I);
-			else
-				kill(pid, O);
-			c <<= 1;
-		}
-		msg++;
-	}
+	while(*msg)
+		send_char(pid, *(msg++));
+	send_char(pid, *msg);
 	return (1);
 }
 
