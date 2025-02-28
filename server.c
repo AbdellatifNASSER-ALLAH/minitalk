@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:29:24 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/27 11:10:09 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:44:59 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	handler(int sig)
 {
 	static int	bit;
-	static char c;
+	static char	c;
 
 	c <<= 1;
 	c |= (sig == I);
 	bit++;
-	if( bit == 8)
+	if (bit == 8)
 	{
 		if (c == '\0')
 			write(1, "\n", 1);
@@ -30,11 +30,12 @@ void	handler(int sig)
 		c = 0;
 	}
 }
-int	main()
-{	
+
+int	main(void)
+{
 	signal(I, handler);
 	signal(O, handler);
 	printf("PID: %d\n", getpid());
-	while(1)
+	while (1)
 		pause();
 }

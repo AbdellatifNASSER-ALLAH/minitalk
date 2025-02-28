@@ -11,19 +11,17 @@
 /* ************************************************************************** */
 
 #ifndef HEADER_H
-#define	HEADER_H
+# define HEADER_H
 
-#include <stdio.h>
-#include <stdlib.h>
+# include <signal.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
+# define I SIGUSR1
+# define O SIGUSR2
 
-#include <unistd.h>
-#include <signal.h>
-
-#define I SIGUSR1
-#define O SIGUSR2
-
-int	send_msg(pid_t	pid, char *msg);
+int		send_msg(pid_t pid, char *msg);
 long	ft_atoi(const char *nptr);
 
 #endif

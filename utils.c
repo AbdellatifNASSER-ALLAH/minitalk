@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "header.h"
 
-static	void send_char(pid_t pid, char c)
+static void	send_char(pid_t pid, char c)
 {
 	int	bit;
 
@@ -27,11 +27,11 @@ static	void send_char(pid_t pid, char c)
 	}
 }
 
-int	send_msg(pid_t	pid, char *msg)
+int	send_msg(pid_t pid, char *msg)
 {
 	if (kill(pid, 0) == -1)
 		return (write(2, "Process Not found!\n", 19), 0);
-	while(*msg)
+	while (*msg)
 		send_char(pid, *(msg++));
 	send_char(pid, *msg);
 	return (1);
