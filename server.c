@@ -6,36 +6,50 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:29:24 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/28 16:44:59 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:54:12 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	handler(int sig)
+void	action(int sig, siginfo_t *siginfo, void *ucontext)
 {
-	static int	bit;
-	static char	c;
+	static int		bit;
+	static char		c;
+	static pid_t	pid;
 
-	c <<= 1;
+	(void)ucontext;
+	if (pid == 0 || pid != siginfo->si_pid)
+	{
+		bit = 0;
+		c = 0;
+		pid = siginfo->si_pid;
+	}
 	c |= (sig == I);
 	bit++;
 	if (bit == 8)
 	{
 		if (c == '\0')
-			write(1, "\n", 1);
-		else
-			write(1, &c, 1);
+			kill(pid, I);
+		write(1, &c, 1);
 		bit = 0;
 		c = 0;
+		pid = 0;
 	}
+	else
+		c <<= 1;
 }
 
 int	main(void)
 {
-	signal(I, handler);
-	signal(O, handler);
+	struct sigaction	sa;
+
 	printf("PID: %d\n", getpid());
+	sigemptyset(&sa.sa_mask);
+	sa.sa_sigaction = action;
+	sa.sa_flags = SA_SIGINFO;
+	if (sigaction(I, &sa, NULL) == -1 || sigaction(O, &sa, NULL) == -1)
+		exit(1);
 	while (1)
 		pause();
 }

@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 23:21:06 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/27 11:20:53 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:50:17 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
@@ -23,12 +23,13 @@ static void	send_char(pid_t pid, char c)
 		else
 			kill(pid, O);
 		c <<= 1;
-		usleep(50);
+		usleep(100);
 	}
 }
 
 int	send_msg(pid_t pid, char *msg)
 {
+	printf("len:|%ld|\n", strlen(msg));
 	if (kill(pid, 0) == -1)
 		return (write(2, "Process Not found!\n", 19), 0);
 	while (*msg)

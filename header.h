@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:30:08 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/26 18:53:09 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:50:47 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
 
 # define I SIGUSR1
