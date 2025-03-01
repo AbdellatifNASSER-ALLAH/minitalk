@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:29:24 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/02/28 19:54:12 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:13:11 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	printf("PID: %d\n", getpid());
+	write(1, "PID: ", 5);
+	ft_putnbr(getpid());
+	write(1, "\n", 1);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction = action;
 	sa.sa_flags = SA_SIGINFO;

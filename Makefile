@@ -15,6 +15,7 @@ SERVER = server
 CLIENT = client
 
 all: $(SERVER) $(CLIENT)
+bonus: all
 	
 $(SERVER): $(OBJS) $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
