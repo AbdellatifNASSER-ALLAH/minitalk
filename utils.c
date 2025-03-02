@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 23:21:06 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/03/01 16:39:55 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:39:00 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
@@ -23,7 +23,7 @@ static void	send_char(pid_t pid, char c)
 		else
 			kill(pid, O);
 		c <<= 1;
-		usleep(500);
+		usleep(600);
 	}
 }
 
@@ -44,19 +44,9 @@ long	ft_atoi(const char *nptr)
 
 	res = 0;
 	sign = 1;
-	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-	}
-	if (!(*nptr && *nptr >= '0' && *nptr <= '9'))
-		return (-1);
 	while (*nptr && *nptr >= '0' && *nptr <= '9')
 		res = res * 10 + (*nptr++ - 48);
-	if (*nptr && !(*nptr && *nptr >= '0' && *nptr <= '9'))
+	if (*nptr && !(*nptr >= '0' && *nptr <= '9'))
 		return (-1);
 	return (res * sign);
 }
