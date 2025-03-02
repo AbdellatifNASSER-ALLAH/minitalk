@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:29:24 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/03/01 16:55:17 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:43:43 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	action(int sig, siginfo_t *siginfo, void *ucontext)
 	if (bit == 8)
 	{
 		if (c == '\0')
-			bit = kill(pid, I) | write(1, "\n", 1);
+			kill(pid, I);
 		write(1, &c, 1);
 		bit = 0;
 		c = 0;
